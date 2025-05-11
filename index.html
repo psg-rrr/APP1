@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>App de Salud</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <nav class="sidebar">
+      <button id="button-upp" onclick="showTab('upp')">🩺 UPP</button>
+      <button id="button-nutricion" onclick="showTab('nutricion')">🍽 Nutrición</button>
+      <button id="button-hidratacion" onclick="showTab('hidratacion')">💧 Hidratación</button>
+      <button id="button-eliminacion" onclick="showTab('eliminacion')">🚽 Eliminación</button>
+      <button id="button-ejercicio" onclick="showTab('ejercicio')">🏃 Ejercicio</button>
+      <button id="button-farmacos" onclick="showTab('farmacos')">💊 Medicación</button>
+    </nav>
+    <main class="content">
+      <section id="upp" class="tab active">
+        <button onclick="showUpp()">1. Valorar estado</button>
+        <button onclick="showUppQuery()">2. Consulta con profesional</button>
+        <div id="uppStateContainer">
+          <h1>Estadios de las úlceras por presión</h1>
+          <div class="uppState">
+            <h3>Estadio I</h3>
+            <img src="images/upp/estadio 1.jpg" width="150" height="150">
+            <p>La piel se ve enrojecida, especialmente en áreas donde hay presión. 
+              Este enrojecimiento no desaparece al retirar la presión y puede ser de un tono rojo intenso, 
+              o incluso azulado o morado en pieles oscuras.</p>
+          </div>
+          <div class="uppState">
+            <h3>Estadio II</h3>
+            <p>Pérdida parcial del grosor de la piel, afectando tanto la epidermis como la dermis, o ambas. 
+              Se observa una abrasión, una flictena o una úlcera superficial, 
+              generalmente con un lecho de la herida de color rosado o rojizo. </p>
+            <img src="images/upp/estadio 2.jpg" width="150" height="150">
+          </div>
+          <div class="uppState">
+            <h3>Estadio III</h3>
+            <img src="images/upp/estadio 3.jpg" width="150" height="150">
+            <p>La lesión tiene un aspecto de cráter, con pérdida completa del grosor de la piel y afectación del tejido subcutáneo. 
+              Se pueden observar la grasa subcutánea y, en algunos casos, tejido necrótico (esfacelos). 
+              La úlcera es ligeramente profunda con bordes más definidos y puede tener exudado o necrosis. </p>
+            </div>
+          <div class="uppState">
+            <h3>Estadio IV</h3>
+            <p>La lesión se caracteriza por una destrucción completa del grosor de la piel, 
+              con exposición de músculo, tendón, hueso o estructuras de soporte. Puede haber tejido necrótico, exudado abundante, 
+              y la úlcera puede presentar cavernas, fístulas o trayectos sinuosos. </p>
+            <img src="images/upp/estadio 4.jpg" width="150" height="150">
+          </div>
+        </div>
+        <div id="queryContainer">
+          <h1>Apariencia de riesgo</h1>
+          <div class="risk">
+            <img src="images/upp/riesgo.png" width="300" height="300">
+            <p>La aparición de enrojecimiento en zonas de presión que no palidecen al quitar la presión, 
+              o cualquier signo de infección en una úlcera, como inflamación, 
+              dolor, mal olor o supuración purulenta, son signos de alerta que requieren atención médica. </p>
+          </div>
+
+        </div>
+      </section>
+      <section id="nutricion" class="tab">
+        <h2>Dieta semanal</h2>
+        <table>
+          <thead>
+            <tr><th>Día</th><th>Desayuno</th><th>Comida</th><th>Cena</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Lunes</td><td contenteditable>---</td><td contenteditable>---</td><td contenteditable>---</td></tr>
+            <tr><td>Martes</td><td contenteditable>---</td><td contenteditable>---</td><td contenteditable>---</td></tr>
+            <tr><td>Miércoles</td><td contenteditable>---</td><td contenteditable>---</td><td contenteditable>---</td></tr>
+            <tr><td>Jueves</td><td contenteditable>---</td><td contenteditable>---</td><td contenteditable>---</td></tr>
+            <tr><td>Viernes</td><td contenteditable>---</td><td contenteditable>---</td><td contenteditable>---</td></tr>
+            <tr><td>Sábado</td><td contenteditable>---</td><td contenteditable>---</td><td contenteditable>---</td></tr>
+            <tr><td>Domingo</td><td contenteditable>---</td><td contenteditable>---</td><td contenteditable>---</td></tr>
+          </tbody>
+        </table>
+      </section>
+      <section id="hidratacion" class="tab">
+        <button class="button" onclick="addGlass()" >Añadir vaso de agua</button>
+        <h2>Vasos de agua hoy: <span id="agua-count">0</span> </h2>
+        <div class="glass-container" id="glass-container"></div>
+        <p id="agua-alerta"></p>
+      </section>
+      <section id="eliminacion" class="tab">
+        <button class="button" onclick="addWc()" >Añadir evento de eliminación</button>
+        <input type="number" min="0" id="eventML" type="text" placeholder="Añade los ml del evento">
+        <h2>Eventos registrados hoy: <span id="elim-count">0</span></h2>
+        <div class="wc-container" id="wc-container"></div>
+        <p id="elim-alerta"></p>
+      </section>
+      <section id="ejercicio" class="tab">
+        <h2>Entrenamiento diario</h2>
+        <p>Pasos: <span id="pasos">4500</span></p>
+        <p>Kcal estimadas: <span id="kcal">180</span></p>
+        <p>Kilómetros: <span id="km">3.2</span></p>
+        <div class="barra-container">
+          <div id="barra-progreso" class="barra"></div>
+        </div>
+      </section>
+      <section id="farmacos" class="tab">
+        <h2>Medicación diaria</h2>
+        <div class="calendario">
+          <div contenteditable class="hora">07:00 - Omeoprazol antes de desayunar</div>
+          <div contenteditable class="hora">13:00 - </div>
+          <div contenteditable class="hora">21:00 - </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
